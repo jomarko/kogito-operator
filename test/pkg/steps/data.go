@@ -46,6 +46,8 @@ const (
 	KieAssetLibrary ThirdPartyProject = "kie-asset-library"
 	// KieAssetReMarshaller represents https://github.com/jomarko/kie-assets-re-marshaller project
 	KieAssetReMarshaller ThirdPartyProject = "kie-assets-re-marshaller"
+	// KogitoTooling represents https://github.com/jomarko/kogito-tooling project
+	KogitoTooling ThirdPartyProject = "kogito-tooling"
 )
 
 // Data contains all data needed by Gherkin steps to run
@@ -100,10 +102,11 @@ func (data *Data) RegisterLogsKubernetesObjects(objects ...runtime.Object) {
 func (data *Data) BeforeScenario(scenario *godog.Scenario) error {
 	data.StartTime = time.Now()
 	data.Namespace = getNamespaceName()
-	data.Location = make(map[ThirdPartyProject]string, 3)
+	data.Location = make(map[ThirdPartyProject]string, 4)
 	data.Location[KogitoExamples] = createTemporaryFolder(string(KogitoExamples))
 	data.Location[KieAssetLibrary] = createTemporaryFolder(string(KieAssetLibrary))
 	data.Location[KieAssetReMarshaller] = createTemporaryFolder(string(KieAssetReMarshaller))
+	data.Location[KogitoTooling] = createTemporaryFolder(string(KogitoTooling))
 	data.ScenarioName = scenario.GetName()
 	data.ScenarioContext = map[string]string{}
 
